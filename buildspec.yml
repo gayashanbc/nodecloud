@@ -1,0 +1,18 @@
+version: 0.2
+            
+phases:
+  install:
+    commands:
+      - echo "Entered the install phase..."
+      - echo "Installing global node dependencies..."
+      - npm install -g @angular/cli serverless
+  pre_build:
+    commands:
+      - cd /usr/local/lib/node_modules && ls -la
+artifacts:
+  files:
+    - $CODEBUILD_SRC_DIR/buildspec.yml
+  discard-paths: yes
+cache:
+  paths:
+    - $CODEBUILD_SRC_DIR/node_modules/*
